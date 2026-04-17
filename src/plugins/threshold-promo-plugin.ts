@@ -1,8 +1,8 @@
 import type { TPluginDefinition, TPromoPlugin } from '@/core/contracts';
 
 type TThresholdPromoPluginOptions = {
-  readonly discountThreshold: number;
-  readonly discountPercent: number;
+  discountThreshold: number;
+  discountPercent: number;
 };
 
 export const createThresholdPromoPlugin = ({

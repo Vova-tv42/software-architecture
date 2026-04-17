@@ -19,12 +19,12 @@ const pluginCatalog = [
 
 type TRegisteredPluginDefinition = (typeof pluginCatalog)[number];
 
-export const getPluginCatalog = (): readonly TRegisteredPluginDefinition[] => {
+export const getPluginCatalog = (): TRegisteredPluginDefinition[] => {
   return pluginCatalog;
 };
 
 export const createPluginRegistry = (
-  settings: readonly TPluginSetting[],
+  settings: TPluginSetting[],
 ): TPluginRegistry => {
   const enabledPlugins = pluginCatalog
     .filter((plugin) => isPluginEnabled(settings, plugin.key))
@@ -40,7 +40,7 @@ export const createPluginRegistry = (
 };
 
 export const isPluginEnabled = (
-  settings: readonly TPluginSetting[],
+  settings: TPluginSetting[],
   pluginKey: string,
 ): boolean => {
   const matchingSetting = settings.find(
@@ -51,7 +51,7 @@ export const isPluginEnabled = (
 };
 
 export const getPluginConfigValues = (
-  settings: readonly TPluginSetting[],
+  settings: TPluginSetting[],
   pluginKey: string,
 ): TPluginConfigValues => {
   const matchingSetting = settings.find(

@@ -7,37 +7,35 @@ import type {
 import { db } from '@/lib/db/client';
 import { menuItems, orderItems, orders, pluginSettings } from '@/lib/db/schema';
 
-type TSaveOrderInput = {
-  readonly customerName: string;
-  readonly customerAddress: string;
-  readonly status: TOrderStatus;
-  readonly subtotal: number;
-  readonly discountAmount: number;
-  readonly deliveryFee: number;
-  readonly total: number;
-  readonly deliveryPluginKey: string | null;
-  readonly promoPluginKey: string | null;
-  readonly paymentPluginKey: string | null;
-  readonly paymentMethod: string;
-  readonly isPaid: boolean;
-  readonly paymentReference: string | null;
-  readonly items: readonly TOrderDraftItem[];
-};
+type TSaveOrderInput = Readonly<{
+  customerName: string;
+  customerAddress: string;
+  status: TOrderStatus;
+  subtotal: number;
+  discountAmount: number;
+  deliveryFee: number;
+  total: number;
+  deliveryPluginKey: string | null;
+  promoPluginKey: string | null;
+  paymentPluginKey: string | null;
+  paymentMethod: string;
+  isPaid: boolean;
+  paymentReference: string | null;
+  items: TOrderDraftItem[];
+}>;
 
-type TSaveMenuItemInput = {
-  readonly name: string;
-  readonly description: string;
-  readonly category: string;
-  readonly price: number;
-};
+type TSaveMenuItemInput = Readonly<{
+  name: string;
+  description: string;
+  category: string;
+  price: number;
+}>;
 
 export const listMenuItems = async () => {
   return db.select().from(menuItems).orderBy(menuItems.id);
 };
 
-export const listPluginSettings = async (): Promise<
-  readonly TPluginSetting[]
-> => {
+export const listPluginSettings = async (): Promise<TPluginSetting[]> => {
   const rows = await db
     .select()
     .from(pluginSettings)

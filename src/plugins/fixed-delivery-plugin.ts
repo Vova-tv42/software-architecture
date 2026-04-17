@@ -1,9 +1,9 @@
 import type { TDeliveryPlugin, TPluginDefinition } from '@/core/contracts';
 
-type TFixedDeliveryPluginOptions = {
-  readonly freeDeliveryThreshold: number;
-  readonly deliveryFee: number;
-};
+type TFixedDeliveryPluginOptions = Readonly<{
+  freeDeliveryThreshold: number;
+  deliveryFee: number;
+}>;
 
 export const createFixedDeliveryPlugin = ({
   freeDeliveryThreshold,

@@ -8,18 +8,18 @@ import type {
   TPluginRegistry,
 } from '@/core/contracts';
 
-type TCheckoutInput = {
-  readonly customerAddress: string;
-  readonly customerName: string;
-  readonly paymentMode: TPaymentMode;
-  readonly cartItems: readonly TCartInputItem[];
-  readonly menuItems: readonly TMenuItem[];
-  readonly pluginRegistry: TPluginRegistry;
-};
+type TCheckoutInput = Readonly<{
+  customerAddress: string;
+  customerName: string;
+  paymentMode: TPaymentMode;
+  cartItems: TCartInputItem[];
+  menuItems: TMenuItem[];
+  pluginRegistry: TPluginRegistry;
+}>;
 
 export const createOrderDraft = (
-  menuItems: readonly TMenuItem[],
-  cartItems: readonly TCartInputItem[],
+  menuItems: TMenuItem[],
+  cartItems: TCartInputItem[],
 ): TOrderDraft => {
   if (cartItems.length === 0) {
     throw new Error('Кошик порожній.');

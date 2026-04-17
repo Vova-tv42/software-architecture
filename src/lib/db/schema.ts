@@ -1,5 +1,6 @@
 import {
   boolean,
+  jsonb,
   integer,
   pgTable,
   serial,
@@ -29,6 +30,7 @@ export const orders = pgTable('orders', {
   promoPluginKey: varchar('promo_plugin_key', { length: 80 }),
   paymentPluginKey: varchar('payment_plugin_key', { length: 80 }),
   paymentMethod: varchar('payment_method', { length: 120 }).notNull(),
+  isPaid: boolean('is_paid').notNull().default(false),
   paymentReference: varchar('payment_reference', { length: 120 }),
   createdAt: timestamp('created_at', {
     withTimezone: true,
@@ -55,4 +57,5 @@ export const pluginSettings = pgTable('plugin_settings', {
   pluginType: varchar('plugin_type', { length: 32 }).notNull(),
   pluginLabel: varchar('plugin_label', { length: 120 }).notNull(),
   enabled: boolean('enabled').notNull().default(true),
+  configValues: jsonb('config_values').notNull().default({}),
 });

@@ -32,7 +32,7 @@ export default async function AdminPage() {
   return (
     <div className="space-y-8">
       <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <CardTitle className="pt-4 font-serif text-3xl">
               Налаштування сервісів
@@ -96,7 +96,10 @@ export default async function AdminPage() {
                           />
                           <div className="grid gap-3 sm:grid-cols-2">
                             {plugin.configFields.map((field) => (
-                              <div key={field.key} className="space-y-2">
+                              <div
+                                key={field.key}
+                                className="flex h-full flex-col justify-between space-y-2"
+                              >
                                 <label
                                   htmlFor={`${plugin.key}-${field.key}`}
                                   className="text-sm font-medium text-foreground"
@@ -178,7 +181,7 @@ export default async function AdminPage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <CardTitle className="font-serif text-3xl">Замовлення</CardTitle>
             <CardDescription className="text-base leading-7">
@@ -246,7 +249,7 @@ export default async function AdminPage() {
         </Card>
       </div>
 
-      <Card>
+      <Card className="min-w-0">
         <CardHeader>
           <CardTitle className="font-serif text-3xl">Меню</CardTitle>
           <CardDescription className="text-base leading-7">
